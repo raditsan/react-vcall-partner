@@ -91,6 +91,7 @@ export function addStreamInDiv(stream, divId, mediaEltId, style, muted) {
       })
       .catch(function(error) {
         // Autoplay was prevented.
+        // eslint-disable-next-line no-undef
         if (apiRTC.osName === 'iOS') {
           console.info(
             'iOS : Autoplay was prevented, activating touch event to start media play'
@@ -177,16 +178,4 @@ export const getOrdersData = async (
 export const getMedicalRecord = async orderId => {
   const url = 'order/' + orderId + '/medicalrecords';
   return await server.get(url);
-};
-
-export const codeServiceName = code => {
-  const c = code.substr(0, 3);
-  let r;
-  if (c === 'OKC') {
-    r = 'Okechat';
-  } else if (c === 'OKD') {
-    r = 'Okedok';
-  } else if (c === 'OKV') {
-    r = 'Okedok';
-  }
-};
+}
