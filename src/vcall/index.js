@@ -28,6 +28,7 @@ var action = null;
 //Function to add media stream in Div
 
 function VcallPartner() {
+  const [dataStorage, setDataStorage] = useState({});
   const [status, setStatus] = useState('calling');
   const [isLocalStreamAvailable, setIsLocalStreamAvailable] = useState(false);
   const [isRemoteStreamAvailable, setIsRemoteStreamAvailable] = useState(false);
@@ -103,10 +104,21 @@ function VcallPartner() {
   // };
 
   useEffect(() => {
+    window.ambilData = getData
+
+    // setTimeout(() => {
+    //   window.ambilData()
+    // }, 3000)
+    // return
     initApiRtc().then(() => {
       initVcall();
     });
   }, []);
+
+  const getData = () => {
+    const order = JSON.parse(localStorage.getItem("order_data") || '{"data": "notfound"}');
+    setDataStorage(order)
+  }
 
   const getMR = async () => {
     setLoadingMedical(true);
@@ -418,6 +430,11 @@ function VcallPartner() {
 
   return (
     <>
+      <pre>
+        {
+          (typeof dataStorage === 'object') ? JSON.stringify(dataStorage, null, 3) : dataStorage
+        }
+      </pre>
       <Layout style={{ background: 'rgba(0, 0, 0, 0.25)' }}>
         <div>
           <div
