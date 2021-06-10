@@ -1,0 +1,298 @@
+video {
+  height: 100%;
+  /* position: absolute; */
+  /* left: 50%; */
+  width: 100%;
+  object-fit: cover;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  /* transform: translateX(-50%); */
+}
+h1 {
+  color: green;
+}
+
+.btn-circle.btn-sm {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  font-size: 8px;
+  text-align: center;
+}
+
+.btn-circle.btn-md {
+  width: 50px;
+  height: 50px;
+  padding: 7px 10px;
+  border-radius: 25px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+small {
+  font-size: 75%;
+}
+
+label {
+  margin: 0 !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+#local-stream {
+  display: block;
+}
+
+#local-stream.connected {
+  background: transparent;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 20vh;
+  width: 28vw;
+  z-index: 2;
+  margin-top: 18px;
+  margin-right: 18px;
+}
+
+#remote-stream {
+  background: rgb(231, 231, 231);
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+#remote-stream.connected {
+  display: block;
+}
+video {
+  object-fit: cover !important;
+}
+video[id^='local-media-'] {
+  height: 100%;
+  width: 100%;
+  object-fit: cover !important;
+}
+video[id^='remote-media-'] {
+  height: 100%;
+  width: 100%;
+  object-fit: cover !important;
+}
+
+#call-header,
+#call-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#call-countdown {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  text-shadow: 1px 1px #afafaf;
+}
+
+#call-countdown {
+  font-size: 1rem !important;
+}
+#call-countdown > h3 {
+  margin-bottom: 0px;
+}
+#call-countdown > div > div > span {
+  font-size: 1rem !important;
+}
+
+#call-countdown #countdown {
+  margin-top: 5px;
+}
+
+#call-header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 70px;
+}
+
+#call-header h5 {
+  text-transform: capitalize;
+  font-size: 1em;
+}
+#call-connected,
+#call-connecting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#call-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+#call-footer i {
+  font-size: 17px;
+}
+#call-footer .reject {
+  transform: rotate(225deg);
+}
+#call-button-spacer {
+  width: 20%;
+}
+
+.button-proses {
+  height: 55px !important;
+  width: 55px !important;
+}
+
+.button-proses > span {
+  font-size: 25px !important;
+  padding-top: 5px;
+}
+
+.button-proses-warning {
+  background-color: #ffc409;
+  border-color: #ffc409 !important;
+}
+
+.button-proses-warning:focus {
+  background-color: #ffc409;
+  border-color: #ffc409 !important;
+}
+
+.button-proses-warning:hover {
+  background-color: #ffc409;
+  border-color: #ffc409 !important;
+}
+
+/* .modal-dialog {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+} */
+
+.ant-modal-wrap.modal-rekam-medis
+  > div
+  > div.ant-modal-content
+  > div.ant-modal-body {
+  min-height: calc(100vh - 133px);
+}
+
+.medical-card {
+  background: #fff;
+  color: #666666;
+  /* margin: 24px 16px; */
+  border-radius: 8px;
+  transform: translateZ(0px);
+  transition: transform 500ms cubic-bezier(0.12, 0.72, 0.29, 1) 0s,
+    -webkit-transform 500ms cubic-bezier(0.12, 0.72, 0.29, 1) 0s;
+  font-size: 14px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.medical-header {
+  background: #f5f5f5;
+  padding: 10px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #c8c7cc;
+}
+
+.medical-profile {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.medical-avatar img {
+  /* height: 100%; */
+  width: 100%;
+  border-radius: 50%;
+}
+
+.medical-avatar {
+  height: 36px;
+  width: 36px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.medical-profile {
+  padding: 16px;
+}
+.medical-profile-info {
+  padding: 6px;
+  border-bottom: 1px solid #c8c7cc;
+}
+.medical-profile-info p {
+  margin: 0 !important;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  height: 100%;
+}
+
+/* div.medical-detail > div.item > p {
+  margin: 0 !important;
+} */
+.medical-detail {
+  margin: 15px;
+}
+.medical-detail > div.item > p:nth-child(1) {
+  margin: 0 !important;
+}
+.medical-detail > div.item > p:nth-child(2) {
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 25px;
+}
+.medical-detail > div.item {
+  border-bottom: 1px solid #c8c7cc;
+  margin-bottom: 8px;
+}
+.medical-detail > div.item:last-child {
+  border-bottom: 0px;
+}
+.label-gray {
+  color: rgba(0, 0, 0, 0.4);
+}
