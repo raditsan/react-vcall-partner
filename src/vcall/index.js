@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, {useRef, useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Button, Layout, message, Modal, Statistic, Skeleton } from 'antd';
 import { CloseOutlined, PhoneFilled, DiffOutlined } from '@ant-design/icons';
 import moment from 'moment';
+import apiRTC from '@apizee/apirtc';
 import {
   server,
   setServer,
   calculateRangeTimes,
   updateFirebaseNotification,
-  initApiRtc,
+  // initApiRtc,
   setOrderResponse,
   getOrdersData,
   getMedicalRecord
@@ -105,15 +106,21 @@ function VcallPartner() {
 
   useEffect(() => {
     window.ambilData = getData
-
-    // setTimeout(() => {
-    //   window.ambilData()
-    // }, 3000)
     // return
-    initApiRtc().then(() => {
-      initVcall();
-    });
+    // initApiRtc().then(() => {
+    //   initVcall();
+    // });
+    initVcall()
   }, []);
+
+  const firstMount = useRef(true)
+  useEffect(()=> {
+    if (firstMount.current) {
+      firstMount.current = false
+      return
+    }
+    console.log('dataStorage', dataStorage)
+  }, [dataStorage])
 
   const getData = () => {
     const order = JSON.parse(localStorage.getItem("order_data") || '{"data": "notfound"}');
@@ -377,8 +384,7 @@ function VcallPartner() {
   };
 
   function registerApiRtc(registerInformation) {
-    // apiRTC.setLogLevel(10);
-    // eslint-disable-next-line no-undef
+    apiRTC.setLogLevel(10);
     var ua = new apiRTC.UserAgent({
       uri: 'apzkey:' + data.apzKey
       // uri: "apzkey:myDemoApiKey"
@@ -430,11 +436,11 @@ function VcallPartner() {
 
   return (
     <>
-      <pre>
-        {
-          (typeof dataStorage === 'object') ? JSON.stringify(dataStorage, null, 3) : dataStorage
-        }
-      </pre>
+      {/*<pre>*/}
+      {/*  {*/}
+      {/*    (typeof dataStorage === 'object') ? JSON.stringify(dataStorage, null, 3) : dataStorage*/}
+      {/*  }*/}
+      {/*</pre>*/}
       <Layout style={{ background: 'rgba(0, 0, 0, 0.25)' }}>
         <div>
           <div
