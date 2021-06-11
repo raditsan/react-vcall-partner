@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useRef, useState, useEffect } from 'react';
-import 'antd/dist/antd.css';
 import './index.css';
 import { Button, Layout, message, Modal, Statistic, Skeleton } from 'antd';
 import { CloseOutlined, PhoneFilled, DiffOutlined } from '@ant-design/icons';
@@ -384,7 +383,7 @@ function VcallPartner() {
   };
 
   function registerApiRtc(registerInformation) {
-    apiRTC.setLogLevel(10);
+    // apiRTC.setLogLevel(10);
     var ua = new apiRTC.UserAgent({
       uri: 'apzkey:' + data.apzKey
       // uri: "apzkey:myDemoApiKey"
@@ -419,6 +418,7 @@ function VcallPartner() {
             // this.onAccept();
             // });
             invitation.accept().then(call => {
+              console.log('invitation.accept')
               getDetailAndCall(call);
             });
           })
@@ -441,19 +441,20 @@ function VcallPartner() {
       {/*    (typeof dataStorage === 'object') ? JSON.stringify(dataStorage, null, 3) : dataStorage*/}
       {/*  }*/}
       {/*</pre>*/}
-      <Layout style={{ background: 'rgba(0, 0, 0, 0.25)' }}>
-        <div>
-          <div
-            id="local-stream"
-            className={isLocalStreamAvailable ? 'connected' : ''}
-          />
-        </div>
-        <div>
-          <div
-            id="remote-stream"
-            className={isRemoteStreamAvailable ? 'connected' : ''}
-          />
-        </div>
+      <div style={{ position: 'absolute', zIndex: 100000 }}>
+        <pre>
+          {JSON.stringify({isLocalStreamAvailable, isRemoteStreamAvailable}, null, 3)}
+        </pre>
+      </div>
+      <div style={{ background: 'rgba(0, 0, 0, 0.25)', height: '100%', width: '100%' }}>
+        <div
+          id="local-stream"
+          className={isLocalStreamAvailable ? 'connected' : ''}
+        />
+        <div
+          id="remote-stream"
+          className={isRemoteStreamAvailable ? 'connected' : ''}
+        />
         {status === 'connected' ? (
           <div id="call-countdown">
             <h3 className="call-name">{data.patient_name}</h3>
@@ -527,97 +528,97 @@ function VcallPartner() {
             </>
           ) : null}
         </div>
-      </Layout>
-      <Modal
-        wrapClassName="modal-rekam-medis"
-        style={{ top: 2 }}
-        title="Rekam Medis"
-        visible={isModalVisible}
-        onOk={() => setIsModalVisible(false)}
-        cancelButtonProps={{ style: { display: 'none' } }}
-        destroyOnClose={true}
-      >
-        <div id="medical-record-list">
-          {loadingMedical ? <Skeleton active /> : null}
-          {listMedical.map((item, index) => {
-            return (
-              <div className="medical-card" key={item.code + index}>
-                <div className="medical-header">
-                  <label>
-                    <small>
-                      No Rekam Medis :{' '}
-                      <span style={{ color: 'blue' }}>{item.code}</span>
-                    </small>
-                    <br />
-                    <small>Order ID : {item.order_code}</small>
-                  </label>
-                </div>
-                <div className="row no-gutters medical-profile">
-                  <div className="col-2">
-                    <div className="medical-avatar align-center" slot="start">
-                      <img
-                        alt="avatar"
-                        src={
-                          item.doctor_picture
-                            ? item.doctor_picture
-                            : 'https://www.w3schools.com/howto/img_avatar.png'
-                        }
-                      />
-                    </div>
-                  </div>
-                  <div className="col-10 medical-profile-info label-gray">
-                    <div className="row no-gutters">
-                      <div className="col">
-                        <div className="align-center" style={{ color: '#000' }}>
-                          <b>{item.doctor_name || item.partner_name}</b>
-                        </div>
-                      </div>
-                      <div className="col text-right" slot="end">
-                        <p>{item.service_name}</p>
-                        <p>
-                          <small>
-                            {moment(item.created_at).format(
-                              'dddd, D MMM YYYY HH:mm'
-                            )}
-                          </small>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="medical-detail">
-                  <div className="item">
-                    <p className="label-gray">Jenis Anamnesis</p>
-                    <p style={{ marginTop: '10px' }}>{item.anamnesis_type}</p>
-                  </div>
-                  <div className="item">
-                    <p className="label-gray">Diagnosis</p>
-                    <p style={{ marginTop: '10px' }}>{item.diagnosis}</p>
-                  </div>
-                  <div className="item">
-                    <p className="label-gray">Terapi/Obat</p>
-                    <p style={{ marginTop: '10px', whiteSpace: 'pre-wrap' }}>
-                      {item.medicine}
-                    </p>
-                  </div>
-                  <div className="item">
-                    <p className="label-gray">Pemeriksaan Penunjang</p>
-                    <p style={{ marginTop: '10px' }}>{item.followup}</p>
-                  </div>
-                  <div
-                    className="item"
-                    lines="none"
-                    style={{ marginBottom: '10px' }}
-                  >
-                    <p className="label-gray">Notes and Allergies</p>
-                    <p style={{ marginTop: '10px' }}>{item.followup_note}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </Modal>
+      </div>
+      {/*<Modal*/}
+      {/*  wrapClassName="modal-rekam-medis"*/}
+      {/*  style={{ top: 2 }}*/}
+      {/*  title="Rekam Medis"*/}
+      {/*  visible={isModalVisible}*/}
+      {/*  onOk={() => setIsModalVisible(false)}*/}
+      {/*  cancelButtonProps={{ style: { display: 'none' } }}*/}
+      {/*  destroyOnClose={true}*/}
+      {/*>*/}
+      {/*  <div id="medical-record-list">*/}
+      {/*    {loadingMedical ? <Skeleton active /> : null}*/}
+      {/*    {listMedical.map((item, index) => {*/}
+      {/*      return (*/}
+      {/*        <div className="medical-card" key={item.code + index}>*/}
+      {/*          <div className="medical-header">*/}
+      {/*            <label>*/}
+      {/*              <small>*/}
+      {/*                No Rekam Medis :{' '}*/}
+      {/*                <span style={{ color: 'blue' }}>{item.code}</span>*/}
+      {/*              </small>*/}
+      {/*              <br />*/}
+      {/*              <small>Order ID : {item.order_code}</small>*/}
+      {/*            </label>*/}
+      {/*          </div>*/}
+      {/*          <div className="row no-gutters medical-profile">*/}
+      {/*            <div className="col-2">*/}
+      {/*              <div className="medical-avatar align-center" slot="start">*/}
+      {/*                <img*/}
+      {/*                  alt="avatar"*/}
+      {/*                  src={*/}
+      {/*                    item.doctor_picture*/}
+      {/*                      ? item.doctor_picture*/}
+      {/*                      : 'https://www.w3schools.com/howto/img_avatar.png'*/}
+      {/*                  }*/}
+      {/*                />*/}
+      {/*              </div>*/}
+      {/*            </div>*/}
+      {/*            <div className="col-10 medical-profile-info label-gray">*/}
+      {/*              <div className="row no-gutters">*/}
+      {/*                <div className="col">*/}
+      {/*                  <div className="align-center" style={{ color: '#000' }}>*/}
+      {/*                    <b>{item.doctor_name || item.partner_name}</b>*/}
+      {/*                  </div>*/}
+      {/*                </div>*/}
+      {/*                <div className="col text-right" slot="end">*/}
+      {/*                  <p>{item.service_name}</p>*/}
+      {/*                  <p>*/}
+      {/*                    <small>*/}
+      {/*                      {moment(item.created_at).format(*/}
+      {/*                        'dddd, D MMM YYYY HH:mm'*/}
+      {/*                      )}*/}
+      {/*                    </small>*/}
+      {/*                  </p>*/}
+      {/*                </div>*/}
+      {/*              </div>*/}
+      {/*            </div>*/}
+      {/*          </div>*/}
+      {/*          <div className="medical-detail">*/}
+      {/*            <div className="item">*/}
+      {/*              <p className="label-gray">Jenis Anamnesis</p>*/}
+      {/*              <p style={{ marginTop: '10px' }}>{item.anamnesis_type}</p>*/}
+      {/*            </div>*/}
+      {/*            <div className="item">*/}
+      {/*              <p className="label-gray">Diagnosis</p>*/}
+      {/*              <p style={{ marginTop: '10px' }}>{item.diagnosis}</p>*/}
+      {/*            </div>*/}
+      {/*            <div className="item">*/}
+      {/*              <p className="label-gray">Terapi/Obat</p>*/}
+      {/*              <p style={{ marginTop: '10px', whiteSpace: 'pre-wrap' }}>*/}
+      {/*                {item.medicine}*/}
+      {/*              </p>*/}
+      {/*            </div>*/}
+      {/*            <div className="item">*/}
+      {/*              <p className="label-gray">Pemeriksaan Penunjang</p>*/}
+      {/*              <p style={{ marginTop: '10px' }}>{item.followup}</p>*/}
+      {/*            </div>*/}
+      {/*            <div*/}
+      {/*              className="item"*/}
+      {/*              lines="none"*/}
+      {/*              style={{ marginBottom: '10px' }}*/}
+      {/*            >*/}
+      {/*              <p className="label-gray">Notes and Allergies</p>*/}
+      {/*              <p style={{ marginTop: '10px' }}>{item.followup_note}</p>*/}
+      {/*            </div>*/}
+      {/*          </div>*/}
+      {/*        </div>*/}
+      {/*      );*/}
+      {/*    })}*/}
+      {/*  </div>*/}
+      {/*</Modal>*/}
     </>
   );
 }
