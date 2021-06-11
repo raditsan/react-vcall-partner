@@ -35,6 +35,7 @@ export function calculateRangeTimes(started_at, ammount) {
 }
 
 export function addStreamInDiv(stream, divId, mediaEltId, style, muted) {
+  console.log('func_addStreamInDiv')
   var streamIsVideo = stream.hasVideo();
 
   var mediaElt = null,

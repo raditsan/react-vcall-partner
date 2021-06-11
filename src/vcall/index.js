@@ -11,6 +11,7 @@ import {
   calculateRangeTimes,
   updateFirebaseNotification,
   // initApiRtc,
+  addStreamInDiv,
   setOrderResponse,
   getOrdersData,
   getMedicalRecord
@@ -270,12 +271,22 @@ function VcallPartner() {
         setIsLocalStreamAvailable(true);
 
         if (localStream) {
-          stream.addInDiv(
+          addStreamInDiv(
+            stream,
             'local-stream',
             'local-media',
-            { height: '100%' },
+            {
+              height: '100%',
+              width: '100%'
+            },
             true
           );
+          // stream.addInDiv(
+          //   'local-stream',
+          //   'local-media',
+          //   { height: '100%' },
+          //   true
+          // );
         }
         console.log('localStreamAvailable');
       })
@@ -285,10 +296,20 @@ function VcallPartner() {
         setIsRemoteStreamAvailable(true);
 
         if (remoteStream) {
-          stream.addInDiv(
+          // stream.addInDiv(
+          //   'remote-stream',
+          //   'remote-media',
+          //   { height: '100%' },
+          //   false
+          // );
+          addStreamInDiv(
+            stream,
             'remote-stream',
             'remote-media',
-            { height: '100%' },
+            {
+              height: '100%',
+              width: '100%'
+            },
             false
           );
         }
@@ -441,7 +462,7 @@ function VcallPartner() {
       {/*    (typeof dataStorage === 'object') ? JSON.stringify(dataStorage, null, 3) : dataStorage*/}
       {/*  }*/}
       {/*</pre>*/}
-      <div style={{ position: 'absolute', zIndex: 100000 }}>
+      <div style={{ position: 'absolute', zIndex: 100000, backgroundColor: '#fff' }}>
         <pre>
           {JSON.stringify({isLocalStreamAvailable, isRemoteStreamAvailable}, null, 3)}
         </pre>
